@@ -22,3 +22,5 @@ Real easy.
 <li>This snapshot was saved during my final year, so I had a lot of free time, evidenced by the "blanks" in my schedule. This timetable looked a lot better and was a lot more useful with a "fuller" timetable, but unfortunately, I did not save a copy of the page back then. I could just pad the schedule with filler classes, but it I believe that 4 courses are enough to highlight the working of this calculator.</li>
 <li>"Day order" was to ensure that classes were not "lost" for a whole week in the rare occurrence of a holiday. If Friday was a holiday, Monday would have Friday's schedule, Tuesday would have Monday's and so on. Think of it as a (Working day)%5 counter.</li>
 </ul>
+
+This is how the page looks: <a href='https://rawgit.com/AkshayRaman/attendance-calculator/master/index.html'>Click here</a>
