@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <title>ATTENDANCE CALCULATOR</title>
+      <script src="jquery-latest.js"></script>
+      <script src="scripts.js"></script>
+      <link href="styles.css" rel="stylesheet" media="screen">
+      <link href="bootstrap.css" rel="stylesheet" media="screen">
+      <script src="bootstrap.js"></script>
+   </head>
+   <body>
+      <div id="container">
+         <div id="header" style="clear:both;text-align:center;">Welcome, 'Student name' ('Registration number') - 'Course name'</div>
+         <div id="left" class="span10">
+            <div style="display: none;" id="timetablediv">
+               <h4>
+                  <center>
+                     Time Table
+                     <center></center>
+                  </center>
+               </h4>
+               <table class="table table-condensed table-hover table-bordered" id="timetable" border="1">
+                  <tbody>
+                     <tr class="heading">
+                        <td><b>Day Order/Hour</b></td>
+                        <td><b>1</b></td>
+                        <td><b>2</b></td>
+                        <td><b>3</b></td>
+                        <td><b>4</b></td>
+                        <td><b>5</b></td>
+                        <td><b>6</b></td>
+                        <td><b>7</b></td>
+                     </tr>
+                     <tr>
+                        <td class="heading"><b>Day 1</b></td>
+                        <td>IT0404</td>
+                        <td>IT0480</td>
+                        <td>-</td>
+                        <td>IT0402</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                     </tr>
+                     <tr>
+                        <td class="heading"><b>Day 2</b></td>
+                        <td>IT0402</td>
+                        <td>IT0404</td>
+                        <td>IT0480</td>
+                        <td>-</td>
+                        <td>IT0402</td>
+                        <td>IT0402</td>
+                        <td>IT0402</td>
+                     </tr>
+                     <tr>
+                        <td class="heading"><b>Day 3</b></td>
+                        <td>-</td>
+                        <td>IT0404</td>
+                        <td>IT0402</td>
+                        <td>IT0480</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                     </tr>
+                     <tr>
+                        <td class="heading"><b>Day 4</b></td>
+                        <td>-</td>
+                        <td>IT0420</td>
+                        <td>IT0420</td>
+                        <td>IT0420</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                     </tr>
+                     <tr>
+                        <td class="heading"><b>Day 5</b></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>IT0420</td>
+                        <td>IT0420</td>
+                        <td>IT0420</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <h4>
+               <center>Predicted Schedule</center>
+            </h4>
+            <div id="generatedTimeTableDiv" style="max-height:500px;overflow-y:auto">
+               <table class="table table-condensed table-bordered" id="generatedTimeTable">
+                  <tbody>
+                     <tr class="btn-inverse">
+                        <td onclick="getAllClassData($(this))">Date</td>
+                        <td>Day Order</td>
+                        <td colspan="7" style="text-align:center">Schedule</td>
+                        <td>Bunk/Attend</td>
+                     </tr>
+                     <tr style="">
+                        <td class="btn-primary" onclick="getAllClassData($(this))">Tue, 2015-03-31</td>
+                        <td align="center">2</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0404</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0480</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td><button class="btn btn-warning" onclick="toggleRow($(this))">Bunk</button></td>
+                     </tr>
+                     <tr style="">
+                        <td class="btn-primary" onclick="getAllClassData($(this))">Wed, 2015-04-01</td>
+                        <td align="center">3</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0404</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0480</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td><button class="btn btn-warning" onclick="toggleRow($(this))">Bunk</button></td>
+                     </tr>
+                     <tr class="btn-success">
+                        <td>Thu, 2015-04-02</td>
+                        <td colspan="9" style="text-align:center">HOLIDAY!</td>
+                     </tr>
+                     <tr></tr>
+                     <tr class="btn-success">
+                        <td>Fri, 2015-04-03</td>
+                        <td colspan="9" style="text-align:center">HOLIDAY!</td>
+                     </tr>
+                     <tr></tr>
+                     <tr class="btn-success">
+                        <td>Sat, 2015-04-04</td>
+                        <td colspan="9" style="text-align:center">HOLIDAY!</td>
+                     </tr>
+                     <tr></tr>
+                     <tr class="btn-success">
+                        <td>Sun, 2015-04-05</td>
+                        <td colspan="9" style="text-align:center">HOLIDAY!</td>
+                     </tr>
+                     <tr></tr>
+                     <tr style="">
+                        <td class="btn-primary" onclick="getAllClassData($(this))">Mon, 2015-04-06</td>
+                        <td align="center">4</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td><button class="btn btn-warning" onclick="toggleRow($(this))">Bunk</button></td>
+                     </tr>
+                     <tr style="">
+                        <td class="btn-primary" onclick="getAllClassData($(this))">Tue, 2015-04-07</td>
+                        <td align="center">5</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td><button class="btn btn-warning" onclick="toggleRow($(this))">Bunk</button></td>
+                     </tr>
+                     <tr style="">
+                        <td class="btn-primary" onclick="getAllClassData($(this))">Wed, 2015-04-08</td>
+                        <td align="center">1</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0404</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0480</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td><button class="btn btn-warning" onclick="toggleRow($(this))">Bunk</button></td>
+                     </tr>
+                     <tr style="">
+                        <td class="btn-primary" onclick="getAllClassData($(this))">Thu, 2015-04-09</td>
+                        <td align="center">2</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0404</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0480</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td><button class="btn btn-warning" onclick="toggleRow($(this))">Bunk</button></td>
+                     </tr>
+                     <tr style="">
+                        <td class="btn-primary" onclick="getAllClassData($(this))">Fri, 2015-04-10</td>
+                        <td align="center">3</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0404</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0480</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td><button class="btn btn-warning" onclick="toggleRow($(this))">Bunk</button></td>
+                     </tr>
+                     <tr class="btn-success">
+                        <td>Sat, 2015-04-11</td>
+                        <td colspan="9" style="text-align:center">HOLIDAY!</td>
+                     </tr>
+                     <tr></tr>
+                     <tr class="btn-success">
+                        <td>Sun, 2015-04-12</td>
+                        <td colspan="9" style="text-align:center">HOLIDAY!</td>
+                     </tr>
+                     <tr></tr>
+                     <tr style="">
+                        <td class="btn-primary" onclick="getAllClassData($(this))">Mon, 2015-04-13</td>
+                        <td align="center">4</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td><button class="btn btn-warning" onclick="toggleRow($(this))">Bunk</button></td>
+                     </tr>
+                     <tr class="btn-success">
+                        <td>Tue, 2015-04-14</td>
+                        <td colspan="9" style="text-align:center">HOLIDAY!</td>
+                     </tr>
+                     <tr></tr>
+                     <tr style="">
+                        <td class="btn-primary" onclick="getAllClassData($(this))">Wed, 2015-04-15</td>
+                        <td align="center">5</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0420</td>
+                        <td><button class="btn btn-warning" onclick="toggleRow($(this))">Bunk</button></td>
+                     </tr>
+                     <tr style="">
+                        <td class="btn-primary" onclick="getAllClassData($(this))">Thu, 2015-04-16</td>
+                        <td align="center">1</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0404</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0480</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td><button class="btn btn-warning" onclick="toggleRow($(this))">Bunk</button></td>
+                     </tr>
+                     <tr style="">
+                        <td class="btn-primary" onclick="getAllClassData($(this))">Fri, 2015-04-17</td>
+                        <td align="center">2</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0404</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0480</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">-</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td class="btn-info" onclick="toggleBtnClass($(this))">IT0402</td>
+                        <td><button class="btn btn-warning" onclick="toggleRow($(this))">Bunk</button></td>
+                     </tr>
+                     <tr class="btn-success">
+                        <td>Sat, 2015-04-18</td>
+                        <td colspan="9" style="text-align:center">HOLIDAY!</td>
+                     </tr>
+                     <tr></tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div id="right" class="span3">
+            <center>
+               <h6>Attendance During the Period  : 06/Jan/2015                  &nbsp;&nbsp;TO&nbsp;&nbsp;              31/Mar/2015</h6>
+            </center>
+            <table class="table table-condensed table-striped table-hover table-bordered" id="attendanceTable" border="1">
+               <tbody>
+                  <tr style="font-weight:bold" class="heading">
+                     <td rowspan="2">Course</td>
+                     <td colspan="5" align="center">Before</td>
+                     <td rowspan="2"></td>
+                     <td colspan="5" align="center">After</td>
+                  </tr>
+                  <tr style="font-weight:bold" class="heading">
+                     <td title="Total classes">T</td>
+                     <td title="Present">P+OD</td>
+                     <td title="Absent">A</td>
+                     <td>%</td>
+                     <td title="On Duty">OD</td>
+                     <td title="Total classes">T</td>
+                     <td title="Present">P+OD</td>
+                     <td title="Absent">A</td>
+                     <td>%</td>
+                     <td title="On Duty">OD</td>
+                  </tr>
+                  <tr>
+                     <td class="heading" title="ADVANCED JAVA PROGRAMMING"><b>IT0402</b></td>
+                     <td class="before" id="IT0402" align="right">66</td>
+                     <td class="before" id="IT0402" align="right">66</td>
+                     <td class="before" id="IT0402" align="right">0</td>
+                     <td style="background-color: rgb(103, 235, 103);" class="before" id="IT0402" align="right">100.00</td>
+                     <td class="before" id="IT0402" align="right">0</td>
+                     <td></td>
+                     <td class="after" id="IT0402" align="right"></td>
+                     <td class="after" id="IT0402" align="right"></td>
+                     <td class="after" id="IT0402" align="right"></td>
+                     <td class="after" id="IT0402" align="right"></td>
+                     <td class="after" id="IT0402" align="right"></td>
+                  </tr>
+                  <tr>
+                     <td class="heading" title="INFORMATION ASSURANCE AND SECURITY"><b>IT0404</b></td>
+                     <td class="before" id="IT0404" align="right">33</td>
+                     <td class="before" id="IT0404" align="right">31</td>
+                     <td class="before" id="IT0404" align="right">2</td>
+                     <td style="background-color: rgb(103, 103, 235);" class="before" id="IT0404" align="right">93.94</td>
+                     <td class="before" id="IT0404" align="right">0</td>
+                     <td></td>
+                     <td class="after" id="IT0404" align="right"></td>
+                     <td class="after" id="IT0404" align="right"></td>
+                     <td class="after" id="IT0404" align="right"></td>
+                     <td class="after" id="IT0404" align="right"></td>
+                     <td class="after" id="IT0404" align="right"></td>
+                  </tr>
+                  <tr>
+                     <td class="heading" title="PROJECT"><b>IT0420</b></td>
+                     <td class="before" id="IT0420" align="right">66</td>
+                     <td class="before" id="IT0420" align="right">60</td>
+                     <td class="before" id="IT0420" align="right">6</td>
+                     <td style="background-color: rgb(103, 103, 235);" class="before" id="IT0420" align="right">90.91</td>
+                     <td class="before" id="IT0420" align="right">0</td>
+                     <td></td>
+                     <td class="after" id="IT0420" align="right"></td>
+                     <td class="after" id="IT0420" align="right"></td>
+                     <td class="after" id="IT0420" align="right"></td>
+                     <td class="after" id="IT0420" align="right"></td>
+                     <td class="after" id="IT0420" align="right"></td>
+                  </tr>
+                  <tr>
+                     <td class="heading" title="SYSTEM INTEGRATION AND ARCHITECTURE"><b>IT0480</b></td>
+                     <td class="before" id="IT0480" align="right">30</td>
+                     <td class="before" id="IT0480" align="right">24</td>
+                     <td class="before" id="IT0480" align="right">6</td>
+                     <td style="background-color: rgb(103, 103, 235);" class="before" id="IT0480" align="right">80.00</td>
+                     <td class="before" id="IT0480" align="right">0</td>
+                     <td></td>
+                     <td class="after" id="IT0480" align="right"></td>
+                     <td class="after" id="IT0480" align="right"></td>
+                     <td class="after" id="IT0480" align="right"></td>
+                     <td class="after" id="IT0480" align="right"></td>
+                     <td class="after" id="IT0480" align="right"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <div id="remaining">
+               <h6>Total number of days remaining: 19</h6>
+               <h6>Number of working days remaining: 11</h6>
+               <h6>Number of holidays remaining: 8</h6>
+			   <button class="btn btn-mini btn-danger" onclick='if(confirm("Do you really want to reset?"))resetAll();'>Reset</button>
+            </div>
+         </div>
+         <div id="footer" style="clear:both;text-align:center;">All Rights Reserved</div>
+      </div>
+   </body>
+</html>
